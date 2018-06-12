@@ -1,5 +1,8 @@
-项目中添加了JNI后如何设置，如何编译运行。这是一个创建包含了JNI的项目。
-采用了CMakeLists.txt 编辑脚本编译C/C++ 代码的形式。gradle中
+项目中添加了JNI后如何设置，如何编译运行？
+这是一个创建包含了JNI的项目。对Android 项目如何添加编译运行包含C、C++的项目做了一个说明：
+
+首先要在android SDK中添加NDK和cMake和LLDB工具。LLDB 主要是用于代码的debug断点调试。
+然后直接创建的包含C/C++支持的项目，这种项目采用了CMakeLists.txt 编辑脚本编译C/C++ 代码的形式。gradle中
 defaultConfig下设置添加了 :
 externalNativeBuild {//jni 设置编译异常处理
             cmake {
@@ -15,3 +18,51 @@ android 下添加了：
     }
 
 CMake是新的一种设置编译C++的形式。区别于采用ndk-build 的形式，要注意区别！
+对于C++ 代码的编译，输入输出设置都在CMakeLists.txt 中做了处理。
+要指示CMake的创建从本地源代码本机库，添加cmake_minimum_required()和add_library()命令来构建脚本。
+
+＃设置构建原生库所需的CMake的最低版本。
+＃这确保了一组CMake功能可用
+＃你的构建。
+cmake_minimum_required（VERSION 3.4.1）
+
+＃指定库名称，指定库是STATIC还是
+＃SHARED，并提供源代码的相对路径。您可以
+＃通过添加多个add_library（）命令来定义多个库，
+＃和CMake为你建立它们。当你建立你的应用程序，Gradle
+＃会自动将您的APK与共享库打包。
+add_library（＃指定库的名称。
+             本机LIB
+
+             ＃将库设置为共享库。
+             共享
+
+             ＃提供源文件的相对路径。
+             src / main / cpp / native-lib.cpp）
+
+Android NDK提供了一组您可能会觉得有用的本机API和库。您可以通过将NDK库包含在项目的 CMakeLists.txt脚本文件中来使用这些API中的任何一个。
+预构建的NDK库已经存在于Android平台上，因此您无需构建它们或将它们打包到APK中。因为NDK库已经是CMake搜索路径的一部分，
+所以甚至不需要在本地NDK安装中指定库的位置 - 您只需向CMake提供要使用的库的名称并链接它违背你自己的本地library。
+将find_library()命令添加到您的CMake构建脚本中以查找NDK库并将其路径作为变量存储。
+您可以使用此变量在构建脚本的其他部分引用NDK库。以下示例查找Android特定的日志支持库 并将其路径存储在log-lib：
+
+find_library（＃定义存储的路径变量的名称
+              ＃NDK库的位置。
+              登录LIB
+
+              ＃指定NDK库的名称
+              CMake需要定位。
+              日志）
+为了让本地库调用库中的log 函数，您需要使用target_link_libraries()CMake构建脚本中的命令链接库：
+
+find_library（...）
+
+＃将您的本机库与一个或多个其他本机库链接。
+target_link_libraries（＃指定目标库。
+                       本机LIB
+
+                       ＃将日志库链接到目标库。
+                       $ {log-lib}）
+
+具体可以参考android 开发文档设置说明：
+https://developer.android.google.cn/studio/projects/add-native-code
