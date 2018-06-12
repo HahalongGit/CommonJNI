@@ -1,9 +1,10 @@
 #include <jni.h>
 #include <string>
+//#include "jni/com_lll_commonjni_utils_JNIUtils.h"
 
 extern "C"
 JNIEXPORT jstring JNICALL
-Java_com_lll_commonjni_MainActivity_stringFromJNI(
+Java_com_lll_commonjni_utils_JNIUtils_stringFromJNI(
         JNIEnv *env,
         jobject /* this */) {
     std::string hello = "Hello from C++";

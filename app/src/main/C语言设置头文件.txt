@@ -1,0 +1,30 @@
+项目中如果添加了C语言的代码，需要设置头文件声明方法：
+可以在Terminal 中采用java命令完成：
+
+C语言：
+1.新建一个java 类，包含了native 方法，重新编译项目，生成对应的java类的class文件。
+2.采用javah 创建C语言头文件：
+  在 Terminal中切换到C语言代码的目录下然后输入命令：
+  javah -d jni -classpath 自己编译后的class文件的绝对路径
+  （这里要注意，后边是编译后的class文件的绝对路径）
+  执行完成会在对应的C语言的目录下创建一个jni目录，生成一个.h头文件。
+  然后我们创建C语言文件，通过#include 引入这个头文件，创建实现对应的头文件中的方法，
+  这样就可以在java代码中调用这些方法了。
+
+
+C++ 语言：
+C++代码中不需要设置头文件
+方法名称对应native 方法声明的包名、类名和方法名：
+比如包名是：com.lll.commonjni.utils 的类JNIUtils 中声明的方法
+public native String stringFromJNI();
+
+对应的C++代码中方法的实现是：
+Java_com_lll_commonjni_utils_JNIUtils_stringFromJNI(
+        JNIEnv *env,
+        jobject /* this */) {
+    std::string hello = "Hello from C++";
+    return env->NewStringUTF(hello.c_str());
+}
+方法实现的名称是：Java+包名+类名+native方法的名称
+
+注意：修改了java 代码，native方法对应的实现可能就会改变，需要及时修改C、C++对应的实现的代码方法名称。
