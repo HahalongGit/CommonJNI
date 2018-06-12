@@ -1,0 +1,17 @@
+项目中添加了JNI后如何设置，如何编译运行。这是一个创建包含了JNI的项目。
+采用了CMakeLists.txt 编辑脚本编译C/C++ 代码的形式。gradle中
+defaultConfig下设置添加了 :
+externalNativeBuild {//jni 设置编译异常处理
+            cmake {
+                cppFlags "-fexceptions"
+            }
+        }
+
+android 下添加了：
+ externalNativeBuild {// 添加JNI 编译规则 ,编译的路径名称等
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+
+CMake是新的一种设置编译C++的形式。区别于采用ndk-build 的形式，要注意区别！
