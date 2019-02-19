@@ -5,7 +5,7 @@ C语言：
 1.新建一个java 类，包含了native 方法，重新编译项目，生成对应的java类的class文件。
 2.采用javah 创建C语言头文件：
   在 Terminal中切换到C语言代码的目录下然后输入命令：
-  javah -d jni -classpath 自己编译后的class文件的绝对路径
+  javah -d jni -classpath 自己编译后的class文件的绝对路径(要生成的.h文件的路径 ??)
   （这里要注意，后边是编译后的class文件的绝对路径）
   执行完成会在对应的C语言的目录下创建一个jni目录，生成一个.h头文件。
   然后我们创建C语言文件，通过#include 引入这个头文件，创建实现对应的头文件中的方法，
