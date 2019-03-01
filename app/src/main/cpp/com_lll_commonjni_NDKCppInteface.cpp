@@ -2,20 +2,23 @@
 #include <jni.h>
 #include <android/log.h>
 #include "com_lll_commonjni_NDKCppInteface.h"
+#include <iostream>
 /* Header for class com_lll_commonjni_NDKCppInteface */
 
 /*
  * Class:     com_lll_commonjni_NDKCppInteface
- * Method:    executeCppConst
+ * Method:    executeCppConst C++ 方式编写jni代码
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppConst
         (JNIEnv *env, jobject jobj) {
     const int a = 100;
-//    a = 200;  // 常量不能修改
+    //    a = 200;  // 常量不能修改
     // 间接修改
     int *p = (int *) &a;
     *p = 200;
     __android_log_print(ANDROID_LOG_INFO, "main", "修改值：%d", a);// 采用andorid 的底层日志方式
+    //指针修改的方式结果：100  结论，在C++ 中常量是不能修改的 ,在C语言中是可以修改的，但是和编译的环境有关系，Android 中都不能修改，VisualStudia 中可以修改C的常量
+
 }
 
