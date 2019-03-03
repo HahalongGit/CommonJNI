@@ -10,12 +10,19 @@ package com.lll.commonjni;
 
 public class NDKCppInteface {
 
+    /**
+     * C++ 常量
+     */
     public native void executeCppConst();
 
-    // 函数指针
+    /**
+     * 函数指针 操纵
+     */
     public native void executeCppFuncPointer();
 
-    // C++ 中class 的定义
+    /**
+     * C++ 中class 的定义
+     */
     public native  void executeCppClass();
 
 }
