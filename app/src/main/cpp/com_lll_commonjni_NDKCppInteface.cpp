@@ -5,6 +5,7 @@
 #include <iostream>
 /* Header for class com_lll_commonjni_NDKCppInteface */
 
+extern "C"
 /*
  * Class:     com_lll_commonjni_NDKCppInteface
  * Method:    executeCppConst C++ 方式编写jni代码
@@ -22,3 +23,98 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppConst
 
 }
 
+//int get_min(int a, int b) {
+//    return a < b ? a : b;
+//}
+
+int get_min(int a, int b, int c, int d) {
+    return a < b ? a : b;
+}
+
+typedef int(*GET_MIN_P)(int, int, int, int);// 为了方便给方法取别名 函数指针别名
+
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppFuncPointer
+        (JNIEnv *, jobject) {
+    //函数指针
+//    int(* get_min_p) (int,int) = get_min;
+//    int c = get_min(10,20);
+
+    GET_MIN_P p = get_min;
+    int c = p(10, 20, 30, 40);
+    __android_log_print(ANDROID_LOG_INFO, "main", "最小值：%d", c);
+}
+
+
+//class Computer {
+//private:
+//    char *cpu;
+//    char *display;
+//    char *name;
+//    int age;
+
+// 自动生成的 get set 方法
+//public:
+//    char *getCpu() const {
+//        return cpu;
+//    }
+//
+//    void setCpu(char *cpu) {
+//        Computer::cpu = cpu;
+//    }
+//
+//    char *getName() const {
+//        return name;
+//    }
+//
+//    void setName(char *name) {
+//        Computer::name = name;
+//    }
+
+//public:
+//    void setCPU(char *cpu) {
+//        this->cpu = cpu;
+//    }
+//
+//    char *getCPU() {
+//        return this->cpu;
+//    }
+//
+//    void setDisplay(char *display) {
+//        this->display = display;
+//    }
+//
+//    char *getDisplay() {
+//        return this->display;
+//    }
+//
+//    void setAge(int age) {
+//        this->age = age;
+//    }
+//
+//    int getAge() {
+//        return this->age;
+//    }
+//
+//};
+/**
+ * C++ 中类的定义
+ */
+//#include "Computer.h" // 全局类的定义，引用的时候引入头文件执行
+#include "Computer.cpp" // 这里的Cpp 实现类表示没有添加道编译工具中，直接添加头文件报错，添加实现Cpp类可以执行
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppClass
+        (JNIEnv *, jobject) {
+//    Computer computer; // 创建对象 可以不用 new
+//    computer.setAge(5);
+//    computer.setCPU("i7770HQ");
+//    computer.setDisplay("2G独立显卡");
+
+//    Computer computer1 = new Computer();//Types 'Computer' and 'Computer *' are not compatible 这样的写法类型不兼容
+
+    Computer *computer = new Computer(); /// 可以new 一个对象 传递 对象的 引用（指针地址）
+    computer->setDisplay("2G独立显卡");
+    computer->setCPU("i7770hq");
+    computer->setAge(4);
+
+    __android_log_print(ANDROID_LOG_INFO, "main", "显卡4：%s,CPU：%s,年龄：%d", computer->getDisplay(),
+                        computer->getCpu(), computer->getAge());
+}

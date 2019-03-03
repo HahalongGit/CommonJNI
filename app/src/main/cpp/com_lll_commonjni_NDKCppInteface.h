@@ -13,7 +13,26 @@ extern "C" {
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppConst
-  (JNIEnv *, jobject);
+        (JNIEnv *, jobject);
+
+
+/*
+ * Class:     com_lll_commonjni_NDKCppInteface
+ * Method:    executeCppFuncPointer
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppFuncPointer
+        (JNIEnv *, jobject);
+
+
+/*
+ * Class:     com_lll_commonjni_NDKCppInteface
+ * Method:    executeCppFuncPointer
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppClass
+        (JNIEnv *, jobject) ;
+
 
 #ifdef __cplusplus
 }

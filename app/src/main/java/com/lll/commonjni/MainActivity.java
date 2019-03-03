@@ -33,13 +33,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick(R.id.btn_execute)
+    @OnClick({R.id.btn_execute, R.id.btn_executeCppFunc, R.id.btn_executeCppClass})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_execute: {
                 Log.e(TAG, "NDK点击执行..");
                 NDKCppInteface ndkCppInteface = new NDKCppInteface();
                 ndkCppInteface.executeCppConst();
+                break;
+            }
+            case R.id.btn_executeCppFunc: {
+                NDKCppInteface ndkCppInteface = new NDKCppInteface();
+                ndkCppInteface.executeCppFuncPointer();// 方法指针
+            }
+            case R.id.btn_executeCppClass: {// class 定义
+                NDKCppInteface ndkCppInteface = new NDKCppInteface();
+                ndkCppInteface.executeCppClass();
                 break;
             }
         }

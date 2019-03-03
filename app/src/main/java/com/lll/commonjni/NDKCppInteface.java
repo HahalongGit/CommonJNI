@@ -12,4 +12,10 @@ public class NDKCppInteface {
 
     public native void executeCppConst();
 
+    // 函数指针
+    public native void executeCppFuncPointer();
+
+    // C++ 中class 的定义
+    public native  void executeCppClass();
+
 }
