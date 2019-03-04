@@ -13,7 +13,7 @@ Teacher::Teacher(char *name) {
     }
 }
 
-~Teacher() {
+Teacher::~Teacher() {
     __android_log_print(ANDROID_LOG_INFO, "Main", "Teacher析构函数");
 }
 

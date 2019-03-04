@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.btn_execute, R.id.btn_executeCppFunc, R.id.btn_executeCppClass, R.id.btn_executeCppCopy,R.id.btn_executeInitAttribute})
+    @OnClick({R.id.btn_execute, R.id.btn_executeCppFunc, R.id.btn_executeCppClass,
+            R.id.btn_executeCppCopy, R.id.btn_executeInitAttribute, R.id.btn_executeStaticKey})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_execute: {
@@ -56,9 +57,14 @@ public class MainActivity extends AppCompatActivity {
                 ndkCppInteface.executeCppCopy();
                 break;
             }
-            case R.id.btn_executeInitAttribute:{
+            case R.id.btn_executeInitAttribute: {
                 NDKCppInteface ndkCppInteface = new NDKCppInteface();
                 ndkCppInteface.initObjectAttribute();
+                break;
+            }
+            case R.id.btn_executeStaticKey: {
+                NDKCppInteface ndkCppInteface = new NDKCppInteface();
+                ndkCppInteface.executeStaticKey();
                 break;
             }
         }

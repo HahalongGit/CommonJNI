@@ -35,4 +35,9 @@ public class NDKCppInteface {
      */
     public native void initObjectAttribute();
 
+    /**
+     * 静态关键字
+     */
+    public native void executeStaticKey();
+
 }

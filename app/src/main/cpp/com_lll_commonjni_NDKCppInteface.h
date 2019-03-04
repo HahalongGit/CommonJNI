@@ -31,7 +31,7 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppFuncPoint
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppClass
-        (JNIEnv *, jobject) ;
+        (JNIEnv *, jobject);
 
 
 /*
@@ -40,7 +40,7 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppClass
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppCopy
-        (JNIEnv *, jobject) ;
+        (JNIEnv *, jobject);
 
 /*
  * 对象属性的初始化
@@ -49,8 +49,16 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppCopy
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_initObjectAttribute
-        (JNIEnv *, jobject) ;
+        (JNIEnv *, jobject);
 
+/*
+ * static 关键字
+ * Class:     com_lll_commonjni_NDKCppInteface
+ * Method:    executeStaticKey
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeStaticKey
+        (JNIEnv *, jobject); //
 #ifdef __cplusplus
 }
 #endif

@@ -13,6 +13,7 @@ private:
 
 public:
     Teacher(char *name);
+    ~Teacher();
 };
 
 #endif //COMMONJNI_TEACHER_H

@@ -15,9 +15,7 @@ public:
 
     Computer();
 
-    ~Computer() {
-        __android_log_print(ANDROID_LOG_INFO, "main", "Computer的析构函数执行！");
-    }
+    ~Computer();// 析构函数声明
 
 private:
     char *cpu;

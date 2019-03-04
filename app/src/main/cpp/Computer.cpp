@@ -34,7 +34,6 @@ int Computer::getAge() {
     return this->age;
 }
 
-
 char *Computer::getName() const {
     return name;
 }
@@ -50,7 +49,14 @@ void Computer::setName(char *name) {
 //    this->name = name;
 //}
 
-Computer::Computer() {}
+Computer::Computer() {
+    __android_log_print(ANDROID_LOG_INFO, "main", "Computer的构造函数执行！");
+}
+
+
+Computer::~Computer() {
+    __android_log_print(ANDROID_LOG_INFO, "main", "Computer的析构函数执行,释放对象和内存！");
+}
 
 Computer::Computer(char *name, int age) : name(name), age(age) {
     this->name = name;

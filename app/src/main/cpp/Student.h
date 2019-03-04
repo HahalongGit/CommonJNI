@@ -20,7 +20,7 @@ public:
 
 //    Student(char *name) :headTeacher(""),objectTeacher("");
 
-    Student();
+    ~Student();
 
     char *getName() const;
 

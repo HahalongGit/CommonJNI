@@ -112,6 +112,9 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppClass
 //    computer.setAge(5);
 //    computer.setCPU("i7770HQ");
 //    computer.setDisplay("2G独立显卡");
+//    __android_log_print(ANDROID_LOG_INFO, "main", "显卡4：%s,CPU：%s,年龄：%d", computer.getDisplay(),
+//                        computer.getCpu(), computer.getAge());
+    // 上面的这种方式 析构函数执行，下面的new 的方式 析构函数不执行？？？ new 关键字创建的对象 要手动释放内存才会执行
 
 //    Computer computer1 = new Computer();//Types 'Computer' and 'Computer *' are not compatible 这样的写法类型不兼容
 
@@ -119,9 +122,9 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppClass
     computer->setDisplay("2G独立显卡");
     computer->setCPU("i7770hq");
     computer->setAge(4);
-
     __android_log_print(ANDROID_LOG_INFO, "main", "显卡4：%s,CPU：%s,年龄：%d", computer->getDisplay(),
                         computer->getCpu(), computer->getAge());
+    delete computer; // 手动释放内存 析构函数会执行
 
 }
 
@@ -149,9 +152,32 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppCopy
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_initObjectAttribute
         (JNIEnv *env, jobject jobj) {
     //
-//    Teacher teacher1("龙龙班主任");
-//    Teacher teacher2("天翔老师");
+//    Teacher teacher1 =  Teacher("龙龙班主任");// Teacher *teacher1 = Teacher("龙龙班主任");  这种方式也不对
+//    Teacher teacher2 =  Teacher("天翔老师");
 //    Student student = Student("sisi");
 //    Student student = Student("陈国军", teacher1, teacher2);// 注意，和java中初始化对象属性不同
     // 上述初始化的代码报错。检测不到错误所在...
+}
+
+
+// C++ 中new 关键字和 delete 关键字的使用
+// 基本数据类型要 用new
+// int *p = new int[10];
+// 释放内存 delete [] p;// 或者 free(p)
+
+// 对象的创建和释放
+// *** Teacher teacher = Teacher();// 这种方式开辟的是栈内存 自动管理
+// Teacher *teacher = new Teacher(); // 开辟的是堆内存 手动释放
+// teacher->.setName("刘老师");
+// free(teacher); //delete teacher;  //new 关键字创建的对象要手动释放才会调用析构函数
+
+
+// static 关键字
+//
+#include "StaticClass.h"
+//StaticClass
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeStaticKey
+        (JNIEnv *, jobject) {
+    StaticClass staticClass = StaticClass("dream");
+    staticClass.age = 100; //静态属性能不能赋值？ 编译报错
 }

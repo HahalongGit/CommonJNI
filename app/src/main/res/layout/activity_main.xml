@@ -44,4 +44,10 @@
         android:layout_height="wrap_content"
         android:text="C ++ 中 对象属性初始化 " />
 
+    <Button
+        android:id="@+id/btn_executeStaticKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="C ++ 中 对象属性初始化 " />
+
 </LinearLayout>

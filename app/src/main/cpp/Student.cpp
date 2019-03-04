@@ -10,7 +10,8 @@
 //    __android_log_print(ANDROID_LOG_INFO, "Main", "Student一个参数的构造函数");
 //}
 
-~Student() {
+
+Student::~Student() {
     __android_log_print(ANDROID_LOG_INFO, "Main", "Student析构函数");
 }
 
