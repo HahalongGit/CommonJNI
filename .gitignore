@@ -10,3 +10,5 @@
 .externalNativeBuild
 .class
 
+libs/
+src/main/jni/

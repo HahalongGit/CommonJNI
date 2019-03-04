@@ -25,4 +25,14 @@ public class NDKCppInteface {
      */
     public native  void executeCppClass();
 
+    /**
+     * 浅拷贝和深拷贝
+     */
+    public native void executeCppCopy();
+
+    /**
+     * 初始化对象属性
+     */
+    public native void initObjectAttribute();
+
 }

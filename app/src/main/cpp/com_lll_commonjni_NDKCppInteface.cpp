@@ -2,6 +2,7 @@
 #include <jni.h>
 #include <android/log.h>
 #include "com_lll_commonjni_NDKCppInteface.h"
+#include "Student.h"
 #include <iostream>
 /* Header for class com_lll_commonjni_NDKCppInteface */
 
@@ -11,6 +12,7 @@ extern "C"
  * Method:    executeCppConst C++ 方式编写jni代码
  * Signature: ()V
  */
+using namespace std;// 标准命名空间
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppConst
         (JNIEnv *env, jobject jobj) {
     const int a = 100;
@@ -100,7 +102,10 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppFuncPoint
  * C++ 中类的定义
  */
 //#include "Computer.h" // 全局类的定义，引用的时候引入头文件执行
-#include "Computer.cpp" // 这里的Cpp 实现类表示没有添加道编译工具中，直接添加头文件报错，添加实现Cpp类可以执行
+#include "Computer.h" // 这里的Cpp 实现类表示没有添加道编译工具中，直接添加头文件报错，添加实现Cpp类可以执行
+#include "Student.h"
+#include "Teacher.h"
+
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppClass
         (JNIEnv *, jobject) {
 //    Computer computer; // 创建对象 可以不用 new
@@ -117,4 +122,35 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppClass
 
     __android_log_print(ANDROID_LOG_INFO, "main", "显卡4：%s,CPU：%s,年龄：%d", computer->getDisplay(),
                         computer->getCpu(), computer->getAge());
+}
+
+/**
+ * 浅拷贝和深拷贝
+ */
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppCopy
+        (JNIEnv *env, jobject jobj) {
+    // 1.系统默认的就是浅拷贝 值
+    // 浅拷贝默认拷贝的是值，如果是引用则拷贝引用地址 ，如果拷贝后去释放两个对象的内存，就会出错，第二次释放的是一个无效的对象
+    //
+    Computer computer("北京地铁", 80);
+    __android_log_print(ANDROID_LOG_INFO, "main", "name:%s--age:%d", computer.getName(),
+                        computer.getAge());
+    // 2.深拷贝
+    //开辟一块内存区域在堆中，结果对应两个对象 ，两次释放两个对象
+}
+
+
+// 对象属性的初始化
+// 在创建C++ 的类中 添加一个对象的属性会报错，这个对象的属性必须要初始化..
+// 初始化的方式：(语法规定)
+// 1.对应提供对象的类添加无参数的构造方法
+// 2.提供对象属性的这个对象添加一个默认的值 或者在属性创建的时候直接创建这个对象
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_initObjectAttribute
+        (JNIEnv *env, jobject jobj) {
+    //
+//    Teacher teacher1("龙龙班主任");
+//    Teacher teacher2("天翔老师");
+//    Student student = Student("sisi");
+//    Student student = Student("陈国军", teacher1, teacher2);// 注意，和java中初始化对象属性不同
+    // 上述初始化的代码报错。检测不到错误所在...
 }

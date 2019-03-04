@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.btn_execute, R.id.btn_executeCppFunc, R.id.btn_executeCppClass})
+    @OnClick({R.id.btn_execute, R.id.btn_executeCppFunc, R.id.btn_executeCppClass, R.id.btn_executeCppCopy,R.id.btn_executeInitAttribute})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_execute: {
@@ -49,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_executeCppClass: {// class 定义
                 NDKCppInteface ndkCppInteface = new NDKCppInteface();
                 ndkCppInteface.executeCppClass();
+                break;
+            }
+            case R.id.btn_executeCppCopy: {// 浅拷贝和深拷贝
+                NDKCppInteface ndkCppInteface = new NDKCppInteface();
+                ndkCppInteface.executeCppCopy();
+                break;
+            }
+            case R.id.btn_executeInitAttribute:{
+                NDKCppInteface ndkCppInteface = new NDKCppInteface();
+                ndkCppInteface.initObjectAttribute();
                 break;
             }
         }

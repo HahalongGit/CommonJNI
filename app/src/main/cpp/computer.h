@@ -6,16 +6,23 @@
 #ifndef COMMONJNI_COMPUTER_H
 #define COMMONJNI_COMPUTER_H
 
-#endif //COMMONJNI_COMPUTER_H
+
 
 // C++ 的正规类的定义
 class Computer {
+
+public:
+    Computer(char *name, int age);
+
+    Computer();
 
 private:
     char *cpu;
     char *display;
     char *name;
     int age;
+
+
 
 public:
     char *getCpu();
@@ -26,12 +33,20 @@ public:
 
     void setDisplay(char *display);
 
-    char *getName();
-
-    void setName(char *name);
-
     int getAge();
 
     void setAge(int age);
 
+    void setCpu(char *cpu);
+
+    char *getName() const;
+
+    void setName(char *name);
+
+    //    char *getName();
+//
+//    void setName(char *name);
+
 };
+
+#endif //COMMONJNI_COMPUTER_H

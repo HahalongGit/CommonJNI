@@ -34,6 +34,23 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppClass
         (JNIEnv *, jobject) ;
 
 
+/*
+ * Class:     com_lll_commonjni_NDKCppInteface
+ * Method:    executeCppFuncPointer
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppCopy
+        (JNIEnv *, jobject) ;
+
+/*
+ * 对象属性的初始化
+ * Class:     com_lll_commonjni_NDKCppInteface
+ * Method:    initObjectAttribute
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_initObjectAttribute
+        (JNIEnv *, jobject) ;
+
 #ifdef __cplusplus
 }
 #endif
