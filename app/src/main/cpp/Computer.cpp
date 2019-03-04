@@ -2,6 +2,7 @@
 // Created by Administrator on 2019/3/3.
 //
 
+#include <android/log.h>
 #include "Computer.h"
 
 void Computer::setCpu(char *cpu) {

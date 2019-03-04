@@ -7,7 +7,6 @@
 #define COMMONJNI_COMPUTER_H
 
 
-
 // C++ 的正规类的定义
 class Computer {
 
@@ -16,12 +15,15 @@ public:
 
     Computer();
 
+    ~Computer() {
+        __android_log_print(ANDROID_LOG_INFO, "main", "Computer的析构函数执行！");
+    }
+
 private:
     char *cpu;
     char *display;
     char *name;
     int age;
-
 
 
 public:

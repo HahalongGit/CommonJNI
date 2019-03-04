@@ -122,6 +122,7 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppClass
 
     __android_log_print(ANDROID_LOG_INFO, "main", "显卡4：%s,CPU：%s,年龄：%d", computer->getDisplay(),
                         computer->getCpu(), computer->getAge());
+
 }
 
 /**
