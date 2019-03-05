@@ -8,7 +8,7 @@ package com.lll.commonjni;
  * @Date 2019/3/1
  */
 
-public class NDKCppInteface {
+public class NDKCppInteface  {
 
     /**
      * C++ 常量
@@ -54,5 +54,10 @@ public class NDKCppInteface {
      * () 运算符重写
      */
     public native void callCppBackets();
+
+    /**
+     * 继承关系，初始化父类属性
+     */
+    public native void callCppextends();
 
 }

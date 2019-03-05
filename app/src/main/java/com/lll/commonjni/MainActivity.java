@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick({R.id.btn_execute, R.id.btn_executeCppFunc, R.id.btn_executeCppClass,
             R.id.btn_executeCppCopy, R.id.btn_executeInitAttribute, R.id.btn_executeStaticKey,
-            R.id.btn_executePointerRefdiff, R.id.btn_callCppOperator, R.id.btn_callCppBackets})
+            R.id.btn_executePointerRefdiff, R.id.btn_callCppOperator, R.id.btn_callCppBackets,
+            R.id.btn_callCppextends})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_execute: {
@@ -83,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
                 NDKCppInteface ndkCppInteface = new NDKCppInteface();
                 ndkCppInteface.callCppBackets();
                 Log.e(TAG, "callCppBackets- ()操作运算符");
+                break;
+            }
+            case R.id.btn_callCppextends: {
+                NDKCppInteface ndkCppInteface = new NDKCppInteface();
+                ndkCppInteface.callCppextends(); // 执行报错！！！
+                Log.e(TAG, "callCppextends- 继承和初始化父类属性");
                 break;
             }
         }

@@ -261,6 +261,8 @@ ostream &operator<<(ostream &out, Computer &computer) {
 /**
  * 运算符操作 （+，-, * ,/, ++ ,-- ,= , << ,() ，!= >,<）
  * 不可以重载的运算符：.：成员访问运算符；,；->：成员指针访问运算符；:域运算符；sizeof：长度运算符；?:：条件运算符#
+ *
+ * */
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppOperator
         (JNIEnv *, jobject) {
     Computer computer = Computer("联系小新", 5);
@@ -274,6 +276,19 @@ extern "C"
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppBackets
         (JNIEnv *, jobject) {
     Computer computer = Computer("联想G480", 6);
-    int sum = computer(10, 205);// 重载 了（）运算符后的调用，这里computer(10, 205) 不是一个构造方法，是Computer 类头文件中申明的括号运算符
-    __android_log_print(ANDROID_LOG_INFO,"main","重写的（）运算符结果是：%d",sum);
+    int sum = computer(10,
+                       205);// 重载 了（）运算符后的调用，这里computer(10, 205) 不是一个构造方法，是Computer 类头文件中申明的括号运算符
+    __android_log_print(ANDROID_LOG_INFO, "main", "重写的（）运算符结果是：%d", sum);
+}
+
+/**
+ * 继承 和初始化父类属性
+ */
+#include "LLCompany.h"
+
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppextends
+        (JNIEnv *, jobject) {
+//    LLCompany llCompany = LLCompany("地瓜科技有限公司", "一家生产地瓜的公司");
+//    llCompany.toString();
+    // 子类和父类分开写 执行报错 //Error:(291) undefined reference to 'LLCompany::LLCompany(char*, char*)'
 }

@@ -89,6 +89,15 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppOperator
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppBackets
         (JNIEnv *, jobject);
 
+//
+/*
+ * static  继承 初始化父类属性
+ * Class:     com_lll_commonjni_NDKCppInteface
+ * Method:    callCppOperator
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppextends
+        (JNIEnv *, jobject);
 #ifdef __cplusplus
 }
 #endif

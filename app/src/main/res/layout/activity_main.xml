@@ -66,4 +66,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="C ++ 中重写（）运算符 " />
+    <Button
+        android:id="@+id/btn_callCppextends"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="C ++ 继承和初始化父类属性 " />
 </LinearLayout>
