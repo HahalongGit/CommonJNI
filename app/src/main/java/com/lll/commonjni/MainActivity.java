@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick({R.id.btn_execute, R.id.btn_executeCppFunc, R.id.btn_executeCppClass,
             R.id.btn_executeCppCopy, R.id.btn_executeInitAttribute, R.id.btn_executeStaticKey,
-            R.id.btn_executePointerRefdiff})
+            R.id.btn_executePointerRefdiff, R.id.btn_callCppOperator, R.id.btn_callCppBackets})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_execute: {
@@ -71,6 +71,18 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_executePointerRefdiff: {
                 NDKCppInteface ndkCppInteface = new NDKCppInteface();
                 ndkCppInteface.callCppPointerAndRefDiff();
+                break;
+            }
+            case R.id.btn_callCppOperator: {
+                NDKCppInteface ndkCppInteface = new NDKCppInteface();
+                ndkCppInteface.callCppOperator();
+                Log.e(TAG, "callCppOperator-操作运算符");
+                break;
+            }
+            case R.id.btn_callCppBackets: {
+                NDKCppInteface ndkCppInteface = new NDKCppInteface();
+                ndkCppInteface.callCppBackets();
+                Log.e(TAG, "callCppBackets- ()操作运算符");
                 break;
             }
         }

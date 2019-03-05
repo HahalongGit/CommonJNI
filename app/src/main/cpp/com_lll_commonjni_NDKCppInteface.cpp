@@ -231,14 +231,49 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppPointerAndRe
     int a = 100;
     int &b = a;
     int *p = &a;
-    __android_log_print(ANDROID_LOG_INFO,"main","p++前p指针的值:%p", p);// 打印地址
+    __android_log_print(ANDROID_LOG_INFO, "main", "p++前p指针的值:%p", p);// 打印地址
     b++;
     p++;
-    __android_log_print(ANDROID_LOG_INFO,"main","b引用的大小:%d", b);// 打印值
-    __android_log_print(ANDROID_LOG_INFO,"main","p++后p指针的值:%p", p);// 打印地址
+    __android_log_print(ANDROID_LOG_INFO, "main", "b引用的大小:%d", b);// 打印值
+    __android_log_print(ANDROID_LOG_INFO, "main", "p++后p指针的值:%p", p);// 打印地址
     // 结果：
 //    03-05 11:51:12.800 13912-13912/com.lll.commonjni I/main: p++前p指针的值:0xffb540a8
 //    03-05 11:51:12.800 13912-13912/com.lll.commonjni I/main: b引用的大小:101
 //    03-05 11:51:12.800 13912-13912/com.lll.commonjni I/main: p++后p指针的值:0xffb540ac
     // 指针p++ 后的结果可能已经是一个未知的数据了，也可能报错
+
+//    cout<< ""<<endl; // 输出运算符
+
+}
+
+// 输出函数，重载输入输出运算符: <<
+//    cout<< ""<<endl; // 输出运算符
+
+//    ostream 是 系统 iostream 的属性，我们不能在其他类中访问，提供一个友元函数解决
+// 当我们无法给已经存在的类添加成员函数的时候，可以采用友元函数。这里不能访问 iostream 中的ostream属性 提供友元函数
+ostream &operator<<(ostream &out, Computer &computer) {
+    // 实例 Computer 类中提供了友元函数 重写C++ 输出付 << ，这里（在外部类中）实现这个友元函数
+    // 输出对象computer -->>相当于java 中重写toString();
+//    out<<"computer对象的值Name："<<computer.getName()<<"--age:"<<computer.getAge()<<endl; // 在Vsual studio 中输出的方式 android 中不能这样
+    __android_log_print(ANDROID_LOG_INFO, "main", "重写operator<< 操作付友元函数输出"); // 只能是android 的方式输出
+    return out; // 返回引用
+}
+/**
+ * 运算符操作 （+，-, * ,/, ++ ,-- ,= , << ,() ，!= >,<）
+ */
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppOperator
+        (JNIEnv *, jobject) {
+    Computer computer = Computer("联系小新", 5);
+    cout << computer; // 重写了输出符号 << 后就可以输出对象了
+    // 连续打印异常
+//    cout<<computer<<computer; // 给<< 的重写方法添加返回值，获取输入输出对象
+    cout << computer << computer; // 调用两次输出符号
+}
+
+extern "C"
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppBackets
+        (JNIEnv *, jobject) {
+    Computer computer = Computer("联想G480", 6);
+    int sum = computer(10, 205);// 重载 了（）运算符后的调用，这里computer(10, 205) 不是一个构造方法，是Computer 类头文件中申明的括号运算符
+    __android_log_print(ANDROID_LOG_INFO,"main","重写的（）运算符结果是：%d",sum);
 }

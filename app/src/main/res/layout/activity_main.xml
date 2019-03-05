@@ -56,4 +56,14 @@
         android:layout_height="wrap_content"
         android:text="C ++ 中 指针和引用 " />
 
+    <Button
+        android:id="@+id/btn_callCppOperator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="C ++ 中 运算符 " />
+    <Button
+        android:id="@+id/btn_callCppBackets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="C ++ 中重写（）运算符 " />
 </LinearLayout>

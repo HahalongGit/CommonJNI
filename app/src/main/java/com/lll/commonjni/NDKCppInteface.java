@@ -45,4 +45,14 @@ public class NDKCppInteface {
      */
     public native void callCppPointerAndRefDiff();
 
+    /**
+     * C++ 中的运算符 和 重载 重写
+     */
+    public native void callCppOperator();
+
+    /**
+     * () 运算符重写
+     */
+    public native void callCppBackets();
+
 }

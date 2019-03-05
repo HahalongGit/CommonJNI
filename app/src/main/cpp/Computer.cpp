@@ -49,6 +49,16 @@ void Computer::setName(char *name) {
 //    this->name = name;
 //}
 
+/**
+    * 重写 （） 运算符 实现 括号内的数据相乘
+    * @param a
+    * @param b
+    * @return
+    */
+//int operator()(int a, int b) {
+//    return a * b;
+//}
+
 Computer::Computer() {
     __android_log_print(ANDROID_LOG_INFO, "main", "Computer的构造函数执行！");
 }
@@ -62,6 +72,11 @@ Computer::Computer(char *name, int age) : name(name), age(age) {
     this->name = name;
     this->age = age;
 }
+// 重载的 运算符方法直接在.h文件中实现，
+// Cpp文件中报错：Error:(76, 5) error: overloaded 'operator()' must have at least one parameter of class or enumeration type
+//int operator()(int a, int b) {
+//    return a * b;
+//}
 
 
 
