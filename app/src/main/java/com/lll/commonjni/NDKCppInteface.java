@@ -40,4 +40,9 @@ public class NDKCppInteface {
      */
     public native void executeStaticKey();
 
+    /**
+     * 指针和引用
+     */
+    public native void callCppPointerAndRefDiff();
+
 }

@@ -14,6 +14,10 @@ android {
                 cppFlags "-fexceptions"
             }
         }
+        ndk {
+            moduleName "app"
+            abiFilters 'armeabi', 'armeabi-v7a' //jni中的c++文件，不支持生成mip64架构的so文件 过滤掉，否则报错
+        }
     }
     buildTypes {
         release {

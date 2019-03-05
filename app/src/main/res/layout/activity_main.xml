@@ -50,4 +50,10 @@
         android:layout_height="wrap_content"
         android:text="C ++ 中 对象属性初始化 " />
 
+    <Button
+        android:id="@+id/btn_executePointerRefdiff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="C ++ 中 指针和引用 " />
+
 </LinearLayout>

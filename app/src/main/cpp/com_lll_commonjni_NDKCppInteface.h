@@ -59,6 +59,16 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_initObjectAttribute
  */
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeStaticKey
         (JNIEnv *, jobject); //
+
+/*
+ * static  指针和引用的区别
+ * Class:     com_lll_commonjni_NDKCppInteface
+ * Method:    executeStaticKey
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppPointerAndRefDiff
+        (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif

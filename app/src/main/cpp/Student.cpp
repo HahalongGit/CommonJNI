@@ -39,6 +39,12 @@ void Student::setObjectTeacher(const Teacher &objectTeacher) {
     Student::objectTeacher = objectTeacher;
 }
 
+/**
+ *
+ * @param name
+ * @param headTeacher  &headTeacher 传递指针的引用 *headTeacher 传递指针
+ * @param objectTeacher
+ */
 Student::Student(char *name, const Teacher &headTeacher, const Teacher &objectTeacher) : name(name), headTeacher(
         headTeacher), objectTeacher(objectTeacher) {
     this->name = name;

@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     @OnClick({R.id.btn_execute, R.id.btn_executeCppFunc, R.id.btn_executeCppClass,
-            R.id.btn_executeCppCopy, R.id.btn_executeInitAttribute, R.id.btn_executeStaticKey})
+            R.id.btn_executeCppCopy, R.id.btn_executeInitAttribute, R.id.btn_executeStaticKey,
+            R.id.btn_executePointerRefdiff})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_execute: {
@@ -65,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_executeStaticKey: {
                 NDKCppInteface ndkCppInteface = new NDKCppInteface();
                 ndkCppInteface.executeStaticKey();
+                break;
+            }
+            case R.id.btn_executePointerRefdiff: {
+                NDKCppInteface ndkCppInteface = new NDKCppInteface();
+                ndkCppInteface.callCppPointerAndRefDiff();
                 break;
             }
         }

@@ -6,13 +6,14 @@
 #include <iostream>
 /* Header for class com_lll_commonjni_NDKCppInteface */
 
-extern "C"
+
 /*
  * Class:     com_lll_commonjni_NDKCppInteface
  * Method:    executeCppConst C++ 方式编写jni代码
  * Signature: ()V
  */
 using namespace std;// 标准命名空间
+extern "C"
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeCppConst
         (JNIEnv *env, jobject jobj) {
     const int a = 100;
@@ -179,5 +180,65 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_initObjectAttribute
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_executeStaticKey
         (JNIEnv *, jobject) {
     StaticClass staticClass = StaticClass("dream");
-    staticClass.age = 100; //静态属性能不能赋值？ 编译报错
+    //staticClass.age = 100; //静态属性能不能赋值？ 编译报错
+}
+
+// 指针和 引用的区别（什么时候用指针，什么时候用引用？）
+extern "C"
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppPointerAndRefDiff
+        (JNIEnv *, jobject) {
+    // 指针和引用：
+    //1.指针是内存地址，引用只是内存地址的别名，并且程序要为指针变量分配内存，引用不需要分配内存区域
+//    int a = 100;
+//    int &b = a; // b是a的引用
+//    int *p = &a;// p是a的指针
+//    __android_log_print(ANDROID_LOG_INFO, "main", "引用b的地址%p", &b);
+//    __android_log_print(ANDROID_LOG_INFO, "main", "变量a的地址%p", &a);
+//    __android_log_print(ANDROID_LOG_INFO, "main", "指针p的地址%p", &p);
+    // 结果是：
+    //    03-05 10:27:04.255 30582-30582/com.lll.commonjni I/main: 引用b的地址0xffb540a8
+    //    03-05 10:27:04.255 30582-30582/com.lll.commonjni I/main: 变量a的地址0xffb540a8
+    //    03-05 10:27:04.255 30582-30582/com.lll.commonjni I/main: 指针p的地址0xffb540a4
+
+    //2.引用在使用的时候不需要*接引用，但是指针需要解引用
+//    int a = 100;
+//    int &b = a; // b是a的引用
+//    int *p = &a;// p是a的指针
+//    __android_log_print(ANDROID_LOG_INFO, "main", "变量a的地址%p", a);// 直接写a 结果就是a的值
+//    __android_log_print(ANDROID_LOG_INFO, "main", "指针p的地址%p", &p);// a 的值需要 【*p】才能获取到 ，这就是使用*解引用，p是指针是不能直接打印的
+
+    //3.引用只能被初始化一次，之后不能再更改信息，但是指针可以
+//    int a = 100;
+//    int b = 200; // b是a的引用
+//    int &c = a;
+//    int *p = &a;// p是a的指针
+//    &c = b; // 这种写法是错误的，不能修改赋值
+//    p = &b; // 指针可以修改重新赋值，指向b的内存地址
+
+    // 4.引用不能为NULL,指针可以
+//    int a = 100;
+//    int b = 200; // b是a的引用
+//    int &c = NULL;// 这写法是错误的
+//    int *p = NULL;// p可以是一个NULL
+
+    // 5.sizeof(引用)得到的是引用所指向的变量的大小，sizeof(指针)得到的是指针本身的大小
+//    double a = 100;
+//    double &b = a;
+//    double *p = &a;// p是a的指针
+//    __android_log_print(ANDROID_LOG_INFO,"main","b引用的大小：%d", sizeof(b));//引用的大小，引用是值本身的大小 是double 类型的，占8字节
+//    __android_log_print(ANDROID_LOG_INFO,"main","p指针的大小:%d", sizeof(p));// 指针的大小，指针本身是一个地址，地址是int 类型的占4个字节
+    // 6.指针（++ 或者-- ）代表的是地址的位移，引用实际上对应值的改变
+    int a = 100;
+    int &b = a;
+    int *p = &a;
+    __android_log_print(ANDROID_LOG_INFO,"main","p++前p指针的值:%p", p);// 打印地址
+    b++;
+    p++;
+    __android_log_print(ANDROID_LOG_INFO,"main","b引用的大小:%d", b);// 打印值
+    __android_log_print(ANDROID_LOG_INFO,"main","p++后p指针的值:%p", p);// 打印地址
+    // 结果：
+//    03-05 11:51:12.800 13912-13912/com.lll.commonjni I/main: p++前p指针的值:0xffb540a8
+//    03-05 11:51:12.800 13912-13912/com.lll.commonjni I/main: b引用的大小:101
+//    03-05 11:51:12.800 13912-13912/com.lll.commonjni I/main: p++后p指针的值:0xffb540ac
+    // 指针p++ 后的结果可能已经是一个未知的数据了，也可能报错
 }
