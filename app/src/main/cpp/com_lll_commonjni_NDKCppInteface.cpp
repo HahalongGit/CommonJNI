@@ -260,7 +260,7 @@ ostream &operator<<(ostream &out, Computer &computer) {
 }
 /**
  * 运算符操作 （+，-, * ,/, ++ ,-- ,= , << ,() ，!= >,<）
- */
+ * 不可以重载的运算符：.：成员访问运算符；,；->：成员指针访问运算符；:域运算符；sizeof：长度运算符；?:：条件运算符#
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppOperator
         (JNIEnv *, jobject) {
     Computer computer = Computer("联系小新", 5);

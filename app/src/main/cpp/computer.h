@@ -38,9 +38,7 @@ public:
      * @param b
      * @return
      */
-    int operator()(int a, int b) {
-        return a * b;
-    }
+    int operator()(int a, int b);
 
     /**
      * 重写 != (不等于)运算符

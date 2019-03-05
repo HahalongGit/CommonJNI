@@ -73,7 +73,9 @@ Computer::Computer(char *name, int age) : name(name), age(age) {
     this->age = age;
 }
 // 重载的 运算符方法直接在.h文件中实现，
-// Cpp文件中报错：Error:(76, 5) error: overloaded 'operator()' must have at least one parameter of class or enumeration type
+int Computer::operator()(int a, int b) {
+    return a*b;
+}
 //int operator()(int a, int b) {
 //    return a * b;
 //}
