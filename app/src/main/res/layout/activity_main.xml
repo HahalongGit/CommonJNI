@@ -7,68 +7,94 @@
     android:orientation="vertical"
     tools:context="com.lll.commonjni.MainActivity">
 
-    <TextView
-        android:id="@+id/sample_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
-    <Button
-        android:id="@+id/btn_execute"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="执行" />
+            <TextView
+                android:id="@+id/sample_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello World!" />
 
-    <Button
-        android:id="@+id/btn_executeCppFunc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="函数指针" />
 
-    <Button
-        android:id="@+id/btn_executeCppClass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="C ++ 中 class定义 " />
+            <Button
+                android:id="@+id/btn_execute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="执行" />
 
-    <Button
-        android:id="@+id/btn_executeCppCopy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="C ++ 中 浅拷贝和深拷贝 " />
+            <Button
+                android:id="@+id/btn_executeCppFunc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="函数指针" />
 
-    <Button
-        android:id="@+id/btn_executeInitAttribute"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="C ++ 中 对象属性初始化 " />
+            <Button
+                android:id="@+id/btn_executeCppClass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="C ++ 中 class定义 " />
 
-    <Button
-        android:id="@+id/btn_executeStaticKey"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="C ++ 中 对象属性初始化 " />
+            <Button
+                android:id="@+id/btn_executeCppCopy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="C ++ 中 浅拷贝和深拷贝 " />
 
-    <Button
-        android:id="@+id/btn_executePointerRefdiff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="C ++ 中 指针和引用 " />
+            <Button
+                android:id="@+id/btn_executeInitAttribute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="C ++ 中 对象属性初始化 " />
 
-    <Button
-        android:id="@+id/btn_callCppOperator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="C ++ 中 运算符 " />
-    <Button
-        android:id="@+id/btn_callCppBackets"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="C ++ 中重写（）运算符 " />
-    <Button
-        android:id="@+id/btn_callCppextends"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="C ++ 继承和初始化父类属性 " />
+            <Button
+                android:id="@+id/btn_executeStaticKey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="C ++ 中 对象属性初始化 " />
+
+            <Button
+                android:id="@+id/btn_executePointerRefdiff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="C ++ 中 指针和引用 " />
+
+            <Button
+                android:id="@+id/btn_callCppOperator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="C ++ 中 运算符 " />
+
+            <Button
+                android:id="@+id/btn_callCppBackets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="C ++ 中重写（）运算符 " />
+
+            <Button
+                android:id="@+id/btn_callCppextends"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="C ++ 继承和初始化父类属性 " />
+
+            <Button
+                android:id="@+id/btn_callAbstractClass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="C ++ 中的纯虚构函数 " />
+
+            <Button
+                android:id="@+id/btn_callFuncPointer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="C ++ 中函数指针作为函数参数 " />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

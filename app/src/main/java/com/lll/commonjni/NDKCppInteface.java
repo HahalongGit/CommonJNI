@@ -8,7 +8,7 @@ package com.lll.commonjni;
  * @Date 2019/3/1
  */
 
-public class NDKCppInteface  {
+public class NDKCppInteface {
 
     /**
      * C++ 常量
@@ -23,7 +23,7 @@ public class NDKCppInteface  {
     /**
      * C++ 中class 的定义
      */
-    public native  void executeCppClass();
+    public native void executeCppClass();
 
     /**
      * 浅拷贝和深拷贝
@@ -59,5 +59,15 @@ public class NDKCppInteface  {
      * 继承关系，初始化父类属性
      */
     public native void callCppextends();
+
+    /**
+     * C++ 抽象类 （纯虚函数）
+     */
+    public native void callCppAbstractClass();
+
+    /**
+     * 函数指针作为函数参数
+     */
+    public native void callFuncPointer();
 
 }

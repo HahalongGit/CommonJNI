@@ -98,6 +98,36 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppBackets
  */
 JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppextends
         (JNIEnv *, jobject);
+
+//
+/*
+ * static  C++ 的抽象类（纯虚构函数）
+ * Class:     com_lll_commonjni_NDKCppInteface
+ * Method:    callCppAbstractClass
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppAbstractClass
+        (JNIEnv *, jobject);
+
+
+/*
+ * static  C++ 抽象类 虚构函数
+ * Class:     com_lll_commonjni_NDKCppInteface
+ * Method:    callCppAbstractClass
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppAbstractClass
+        (JNIEnv *, jobject);
+
+//callFuncPointer
+/*
+ * static  C++ 的函数指针作为函数参数
+ * Class:     com_lll_commonjni_NDKCppInteface
+ * Method:    callCppAbstractClass
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callFuncPointer
+        (JNIEnv *, jobject);
 #ifdef __cplusplus
 }
 #endif

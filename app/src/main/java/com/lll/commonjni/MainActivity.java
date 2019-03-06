@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         // Example of a call to a native method
-        TextView tv = (TextView) findViewById(R.id.sample_text);
+        TextView tv = findViewById(R.id.sample_text);
+
         tv.setText(new JNIUtils().stringFromJNI());
     }
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick({R.id.btn_execute, R.id.btn_executeCppFunc, R.id.btn_executeCppClass,
             R.id.btn_executeCppCopy, R.id.btn_executeInitAttribute, R.id.btn_executeStaticKey,
             R.id.btn_executePointerRefdiff, R.id.btn_callCppOperator, R.id.btn_callCppBackets,
-            R.id.btn_callCppextends})
+            R.id.btn_callCppextends, R.id.btn_callAbstractClass,R.id.btn_callFuncPointer})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_execute: {
@@ -90,6 +91,19 @@ public class MainActivity extends AppCompatActivity {
                 NDKCppInteface ndkCppInteface = new NDKCppInteface();
                 ndkCppInteface.callCppextends(); // 执行报错！！！
                 Log.e(TAG, "callCppextends- 继承和初始化父类属性");
+                break;
+            }
+            //
+            case R.id.btn_callAbstractClass: {
+                NDKCppInteface ndkCppInteface = new NDKCppInteface();
+                ndkCppInteface.callCppAbstractClass(); // 执行报错！！！
+                Log.e(TAG, "callCppextends- 抽象类（纯虚构函数）");
+                break;
+            }//
+            case R.id.btn_callFuncPointer: {
+                NDKCppInteface ndkCppInteface = new NDKCppInteface();
+                ndkCppInteface.callFuncPointer(); // 执行报错！！！
+                Log.e(TAG, "callCppextends- 函数指针作为函数参数");
                 break;
             }
         }

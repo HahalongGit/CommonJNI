@@ -292,3 +292,176 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppextends
 //    llCompany.toString();
     // 子类和父类分开写 执行报错 //Error:(291) undefined reference to 'LLCompany::LLCompany(char*, char*)'
 }
+
+
+//***********************************************分割线*******************************************************//
+// 方法的重写
+// 父类提供一个方法，子类重写同样的方法
+// 调用方法不同于java
+// 子类对象.父类名称:方法名称();// 子类必须继承修饰符为public 的父类
+
+//***********************************************分割线*******************************************************//
+//多继承
+// 问题：A类有一个属性 name,类有一个属性name,C类继承了A和B类，这时候C类有两个name属性，如何区别这两个name?
+// 解决方案：采用虚继承
+// 关键字：virtual  采用这个关键字表示多继承 解决了不同路径继承来的同名属性 添加了这个关键字在内存中会合并两个名字的
+// 内存，两个父类通用一个name，不会再有歧义，不会报错
+//
+// 多继承的虚函数
+// 多继承除了面对不同父类的同一个属性的问题，还有不同父类的同一个父类方法问题，也是没有办法区别
+// 采用虚函数的方式实现
+// 什么是多态？写一个案例说明！
+// 静态多态：很多类，对应一个管理Mananger 类，通过子类传递对象的方式，调用公用的方法。（问题，一个子类就要重复同样的方法，占用多余空间）
+// 虚函数：定义函数的时候函数中添加关键字virtual，子类重写父类的方法也添加virtual 关键字 。
+// （一个类添加了虚函数，这个对象的大小不再是属性的大小，原因：添加了virtual 修饰关键字后，对象会多一个指针，这个指针指向对象的虚函数的集合，虚函数表包含了对象中
+// 所有的虚函数的指针。也就是这个对象的大小增加了4个字节）
+// 调用的时候就可以像java一样采用父类【引用】调用子类的方法
+// 这样我们就不需要改业务类，是需要提供实现类。
+// 动态多态：程序再编译的阶段并不知道要执行的目标函数，二十等到运行的时候才指定目标函数，这就是动态多态。（基于继承）
+//***********************************************分割线*******************************************************//
+
+// 纯虚构函数（C++ 中的抽象类）
+
+int getMin(int a, int b) {
+    __android_log_print(ANDROID_LOG_INFO, "main", "重载函数案例");
+    return a * b;
+}
+
+template<typename T>
+T getMin(T a, T b) {
+    __android_log_print(ANDROID_LOG_INFO, "main", "函数模板案例");
+    return a < b ? a : b;
+}
+
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callCppAbstractClass
+        (JNIEnv *, jobject) {
+//    __android_log_print(ANDROID_LOG_INFO, "main", "纯虚构函数案例");
+    // 定义：一般的虚函数子类不去实现也不会报错。纯虚函数子类不实现，会报错
+    // class A{
+    //    public :
+    //           void salary() = 0;  虚函数定义
+    // }
+    // 子类必须实现这个方法
+    // C++ 中的【接口】 可以采用纯虚函数模拟--》 把类中的方法全部申明为virtual 就相当于接口
+
+    int result = getMin(100, 23);
+    __android_log_print(ANDROID_LOG_INFO, "main", "模板函数案例：%d", result);
+
+    // C++ 类中有一个模板方法和一个普通方法 同名的时候（getMin方法），程序默认先调用普通方法，普配不上再去调用模板方法。
+    // 模板函数原理：
+    // 编译过程：（上述方法的编译过程）
+    // 1.编译成预处理文件（后缀名.i）
+    // 2.转成汇编文件（后缀名.s文件）
+    // 3.专成目标文件（后缀名.o文件）
+    // 4.链接生成目标文件（可执行文件）
+}
+
+//模板类的创建：
+//typename  约等于 class
+//
+//template<typename T>
+template<class T>
+class BaseDao {
+private:
+    T t;
+public:
+    BaseDao(T t) {
+        this->t = t;
+    }
+};
+
+class UserDao : public BaseDao<int> {// :表示继承，类似java 中类泛型
+public :
+    UserDao(int a) : BaseDao<int>(a) {// 子类调用了父类的构造
+        // 模板类的创建
+    }
+};
+
+// 父类是模板类，子类也是模板类，该怎么做？
+// 子类也要申明他的类型 比如申明是 T
+template<class T>
+class TeacherDao : public BaseDao<T> {// :表示继承，类似java 中类泛型
+public :
+    TeacherDao(T value) : BaseDao<T>(value) {// 子类调用了父类的构造，传递参数value
+        // 模板类的创建
+    }
+};
+
+class TechnologyTeacherDao : TeacherDao<double> {
+public :
+    TechnologyTeacherDao(double salory) : TeacherDao<double>(salory) {
+        // 子类模板类的实现
+    }
+};
+
+//***********************************************分割线*******************************************************//
+
+//函数指针作为函数参数传递
+//1.函数的别名方式实现
+int getMax(int a, int b) {
+    __android_log_print(ANDROID_LOG_INFO, "main", "重载函数案例");
+    return a > b ? a : b;
+}
+
+// 定义函数指针别名
+typedef int(*get_max_p)(int a, int b);
+
+/**
+ * 函数指针作为函数参数
+ * @param p
+ */
+void biz(get_max_p p) {
+    int result = p(102, 345);
+    __android_log_print(ANDROID_LOG_INFO, "main", "函数指针的【别名】作为函数参数传递result：%d", result);
+}
+
+// 直接使用 函数指针 作为参数使用
+//void biz2(int(*get_max_p)(int a, int b), int a,int b) { // get_max_p
+void biz2(int(*p)(int a, int b), int a, int b) {
+//    int result = get_max_p(102, 345);
+    int result = p(a, b);
+    __android_log_print(ANDROID_LOG_INFO, "main", "函数指针作为函数参数传递result：%d", result);
+}
+/**
+ * 函数指针作为函数参数
+ */
+JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callFuncPointer
+        (JNIEnv *, jobject) {
+    get_max_p p = getMax;// 函数指针
+    int result = p(100, 253);
+    biz(getMax);// 指针参数
+    biz(p);
+//    biz2(p,142,256);
+    biz2(getMax, 142, 256);
+}
+
+// 注意：函数指针 结合模板类不能使用 不能定义template 模板 作为参数
+
+//***********************************************分割线*******************************************************//
+
+//typename  约等于 class
+//模板类结合方法的重载
+// 重写 运算符（+，-，*，/等）
+//1.
+// 这种定义只能再当前的方法中使用
+template <typename T>
+class BaseDao1 {
+private:
+    T t;
+public:
+    BaseDao1(T t) {
+        this->t = t;
+    }
+};
+
+//class BaseDao2{
+//private:
+//    T t; // 报错了
+//};
+
+//2.实现和申明分开
+// 如果你的类为模板类或者模板函数
+// 如果申明（之定义方法名没有方法体）和实现类（方法体实现）在不同的文件，那么在使用的时候，需要引入实现类，不能引入头文件。
+// 上述写法有可能不成立报错，根据编译器情况。不推荐遮掩分开写 引入头文件的方式。
+// .h文件和.cpp文件合并 为.hpp文件
+
