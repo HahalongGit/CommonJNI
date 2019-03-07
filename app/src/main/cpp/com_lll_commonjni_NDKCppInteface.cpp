@@ -444,7 +444,7 @@ JNIEXPORT void JNICALL Java_com_lll_commonjni_NDKCppInteface_callFuncPointer
 // 重写 运算符（+，-，*，/等）
 //1.
 // 这种定义只能再当前的方法中使用
-template <typename T>
+template<typename T>
 class BaseDao1 {
 private:
     T t;
@@ -464,4 +464,43 @@ public:
 // 如果申明（之定义方法名没有方法体）和实现类（方法体实现）在不同的文件，那么在使用的时候，需要引入实现类，不能引入头文件。
 // 上述写法有可能不成立报错，根据编译器情况。不推荐遮掩分开写 引入头文件的方式。
 // .h文件和.cpp文件合并 为.hpp文件
+
+
+//***********************************************类型转换*********************************************************//
+// static_cast 用于类型转换
+// 1.用于类的层次结构（继承），积累和子类之间指针和引用的转换（类对象之间不能转换）
+// 2.基本数据类型之间的转换（int ,double ...）
+// 3.把void 指针转换成目标指针（不安全）
+
+// 常量类型转换
+//int a = 100;
+//int b = 1200;
+//const int *p = &a;
+// 常量指针：指针指向的对应的值不能够修改，但是指针对应的地址可以修改
+// 指针常量：
+//const Company *company = new Company("华众创科技");
+//Company *company1 = company;// 报错
+//Company company1 = static_cast<Company &>(company);// 正确写法
+// 常量指针转换成非常量指针，指针的地址会变，指针指向的值也就变了
+
+// 强制类型转换
+// 使用场景：允许任何类型的指针转为其他类型的指针
+//const Company *company = new Company("华众创科技");
+//Student *student = reinterpret_cast<Student*>(company); // 强制类型转换（两个不同的类对象） 两个不同类转换会报错，
+//student = company; // 直接写报错
+
+// 动态类型转换
+// 主要用在类的继承体系中 还可以用在类之间的交叉转换
+//Company * company = new Company("北京地铁运营"); // 指针
+Company company = Company("北京地铁运营");
+Company company1 = dynamic_cast<Company&>(company);
+//Company company2 = dynamic_cast<Company*>(company);
+// 多态类，也就是一个类的子类
+
+
+
+
+
+
+
 
