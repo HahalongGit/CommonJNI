@@ -4,6 +4,7 @@
 #include "com_lll_commonjni_NDKCppInteface.h"
 #include "Student.h"
 #include <iostream>
+#include <fstream>
 /* Header for class com_lll_commonjni_NDKCppInteface */
 
 
@@ -492,15 +493,110 @@ public:
 // 动态类型转换
 // 主要用在类的继承体系中 还可以用在类之间的交叉转换
 //Company * company = new Company("北京地铁运营"); // 指针
-Company company = Company("北京地铁运营");
-Company company1 = dynamic_cast<Company&>(company);
+//Company company = Company("北京地铁运营");
+//Company company1 = dynamic_cast<Company&>(company);
 //Company company2 = dynamic_cast<Company*>(company);
 // 多态类，也就是一个类的子类
 
+//************************************************************************************************************//
+
+/*
+* 定义yige 异常类
+*
+*/
+//class Exception {
+//public :
+//	char * message;
+//public :
+//	~Exception() {
+//		// 析构函数
+//	}
+//	Exception(char * message) {
+//		this->message = message;
+//	}
+//
+//	void print() {
+//		cout << message <<endl;
+//	}
+//};
+// C++ 异常处理
+/////*****************************************************************************************
+//int main() {
+//	int sex = -10;
+//	try {
+//		//------------------------------------------------------
+//		/*if (sex < 0) {
+//			throw sex;
+//		}*/
+//		//if (sex < 0) {
+//		//	char *p = "sfasd";
+//		// Exception *e = new Exception(p)；// 这种创建方式，方法结束了 对象就会释放，catch的指针成为了野指针
+//		// 正确写法：
+//		//	throw new Exception(p);// 指针类型的异常（new 关键字分配内存，这种方式需要手动释放内存）
+//		//}
+//	}
+//	//------------------------------------------------------
+//	//catch (Exception * e) {
+//	//	// 自定义的异常类，和java类似了,当心野指针
+//	//}
+//	//catch (Exception &e) {
+//	//	// 传递引用的异常
+//	//}
+////---------------------------------------------------------
+//	catch (int e) {
+//		// 处理异常
+//		cout << "无法识别性别，泰国人妖！";
+//	}
+//	catch (char a) {
+//		// char 类型的异常，
+//	}
+//	catch (...) {
+//		// 未知错误
+//	}
+//
+//	getchar();
+//	return 0;
+//}
+
+//***********************************************************************
 
 
+// 文件IO流操作
+// 头文件 fstream
+//int main() {
+//    char * path = "E:\C++test.txt";
+//    /*ofstream outFile;
+//    outFile.open(path,ios::app);
+//    */
+//    ofstream f_out(path,ios::app);//ios::app 表示追加内容，没有这参数替换内容
+//    if (f_out.bad()) {
+//        cout << "打开失败" << endl;
+//        return 1;
+//    }
+//    f_out << "C++文件流操作" << endl;
+//    f_out << "文件流结束" << endl;
+//    f_out.close();
+//    return 0;
+//}
 
+///////////*********************************************************************************************//
 
+//C++中的 String 类 （字符串的操作方式）
+// C++中的string和Java中的类似，创建对象，赋值等。
+// 配置Android studio 中C++ 不支持try catch 报错的特性
+//  externalNativeBuild {//jni 设置编译异常处理
+//cmake {
+//cppFlags "-fexceptions" // 打开编辑器不支持try catch 特性
+//}
+//}
+
+// string 转换成 char 方法：
+// 1.
+// string str = "Dream";
+// C++ 的 string 对象不能直接调用 打印 需要调用 string 的方法转换成一个 char 指针 const char *  = str.c_str();
+//2.通过拷贝的方式 str.copy(str.length,0);
+
+// 字符串的查找
 
 
 

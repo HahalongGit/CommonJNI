@@ -11,7 +11,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {//jni 设置编译异常处理
             cmake {
-                cppFlags "-fexceptions"
+                cppFlags "-fexceptions" // 打开编辑器不支持try catch 特性
             }
         }
         ndk {
